@@ -1,1 +1,5 @@
-public class test{}
+public class test{
+
+  sysrem.debu("checking thet message");
+
+}
