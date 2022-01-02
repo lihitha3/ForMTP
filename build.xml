@@ -338,12 +338,10 @@ deployRoot ="${svn.dirFLS}"
   
       
   <sf:deploy username="${Mergeq421.username}" password="${Mergeq421.password}" serverurl="${Mergeq421.serverurl}"
-  deployRoot="${svn.dirFLS}" testlevel="RunSpecifiedTests" checkonly="True"  >
+  deployRoot="${svn.dirFLS}"  >
 	
 		
-		
-		<runtest>AccountTeamTestClass</runtest>
-		<runtest>syncQLIwithOppyLineItemAutosyncTest</runtest>
+	
 		
  </sf:deploy>
  </target>
