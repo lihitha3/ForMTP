@@ -1,0 +1,402 @@
+<project name="Sample usage of Salesforce Ant tasks" default="TRAIN" basedir="." xmlns:sf="antlib:com.salesforce">
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <!-- Setting default value for username, password and session id properties to empty string 
+         so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+         will be treated literally.
+    -->
+    <condition property="sf.username" value=""> <not> <isset property="sf.username"/> </not> </condition>
+    <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
+    <condition property="sf.sessionId" value=""> <not> <isset property="sf.sessionId"/> </not> </condition>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+        <classpath>
+            <pathelement location="../ant-salesforce.jar" />       
+        </classpath>
+    </taskdef>
+
+    <!-- TRAIN out deploy and retrieve verbs for package 'mypkg' -->
+    <target name="TRAIN">
+      <!-- Upload the contents of the "mypkg" package -->
+      <sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="mypkg" rollbackOnError="
+  
+  "/>
+      <mkdir dir="retrieveOutput"/>
+      <!-- Retrieve the contents into another directory -->
+      <sf:retrieve username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget="retrieveOutput" packageNames="MyPkg"/>
+    </target>
+  
+
+    <!-- Shows deploying code & running DXCTEST1s for code in directory -->
+<target name="bulkRetrieveValidationRule">
+
+      <sf:bulkRetrieve username="${TEST.username}" password="${TEST.password}" serverurl="${TEST.serverurl}" metadataType="CustomMetadata"  batchSize="9000" retrieveTarget =
+  
+  "${svn.dirFLS}" />
+    </target>
+
+<target name="retrieveGSDDEV14">
+<property name="s.serverurl" value=" https://test.salesforce.com " />     
+        <property name="s.username" value="sfdc_deployment@hp.com.Mergedev28" />
+        <property name="s.password" value="hpe_rm_sfdcYqNoRaL9ZqnGrWsJ8d0oC7ixN" />
+
+            <sf:retrieve username="${s.username}" password="${s.password}"  serverurl="${s.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveApril18MTP">
+
+            <sf:retrieve username="${April18MTP.username}" password="${April18MTP.password}" serverurl="${April18MTP.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveDXCDEV">
+
+            <sf:retrieve username="${DXCDEV.username}" password="${DXCDEV.password}" serverurl="${DXCDEV.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveTest2">
+
+            <sf:retrieve username="${TEST2.username}" password="${TEST2.password}" serverurl="${TEST2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveGSDLTGDEV">
+
+            <sf:retrieve username="${GSDLTGDEV.username}" password="${GSDLTGDEV.password}" serverurl="${GSDLTGDEV.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveMOCKMTP">
+
+            <sf:retrieve username="${MOCKMTP.username}" password="${MOCKMTP.password}" serverurl="${MOCKMTP.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveGSDPORTFOL">
+
+            <sf:retrieve username="${GSDPORTFOL.username}" password="${GSDPORTFOL.password}" serverurl="${GSDPORTFOL.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveDXCTEST1">
+
+            <sf:retrieve username="${DXCTEST1.username}" password="${DXCTEST1.password}" serverurl="${DXCTEST1.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+
+
+<target name="retrievenov23backu">
+
+            <sf:retrieve username="${nov23backu.username}" password="${nov23backu.password}" serverurl="${nov23backu.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrievePRODUCTION">
+
+            <sf:retrieve username="${PRODUCTION.username}" password="${PRODUCTION.password}" serverurl="${PRODUCTION.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveCPQIT">
+
+            <sf:retrieve username="${CPQIT.username}" password="${CPQIT.password}" serverurl="${CPQIT.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrievekrakenr2">
+
+            <sf:retrieve username="${krakenr2.username}" password="${krakenr2.password}" serverurl="${krakenr2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveCPQIT2">
+
+            <sf:retrieve username="${CPQIT2.username}" password="${CPQIT2.password}" serverurl="${CPQIT2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrievegsdsp17r21">
+
+            <sf:retrieve username="${gsdsp17r21.username}" password="${gsdsp17r21.password}" serverurl="${gsdsp17r21.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveCONFIGQ122">
+
+            <sf:retrieve username="${CONFIGQ122.username}" password="${CONFIGQ122.password}" serverurl="${CONFIGQ122.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveNGITDEV">
+
+            <sf:retrieve username="${NGITDEV.username}" password="${NGITDEV.password}" serverurl="${NGITDEV.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrievesptpadryru">
+
+            <sf:retrieve username="${sptpadryru.username}" password="${sptpadryru.password}" serverurl="${sptpadryru.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrievehppanbussb">
+
+            <sf:retrieve username="${hppanbussb.username}" password="${hppanbussb.password}" serverurl="${hppanbussb.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveCONFIGDEV">
+
+            <sf:retrieve username="${CONFIGDEV.username}" password="${CONFIGDEV.password}" serverurl="${CONFIGDEV.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target> 
+<target name="retrievefeb">
+
+            <sf:retrieve username="${feb20bkp.username}" password="${feb20bkp.password}" serverurl="${feb20bkp.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+
+
+<target name="retrieveTEST">
+
+            <sf:retrieve username="${TEST.username}" password="${TEST.password}" serverurl="${TEST.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+
+<target name="retrieveTEST2">
+
+            <sf:retrieve username="${TEST2.username}" password="${TEST2.password}" serverurl="${TEST2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveConfigdev2">
+
+            <sf:retrieve username="${Configdev2.username}" password="${Configdev2.password}" serverurl="${Configdev2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveGSDR24PHR5">
+
+            <sf:retrieve username="${GSDR24PHR5.username}" password="${GSDR24PHR5.password}" serverurl="${GSDR24PHR5.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrievegsdr21sp17">
+
+            <sf:retrieve username="${gsdr21sp17.username}" password="${gsdr21sp17.password}" serverurl="${gsdr21sp17.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveHOTFIX1">
+
+            <sf:retrieve username="${HOTFIX1.username}" password="${HOTFIX1.password}" serverurl="${TEST.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveTRAIN2">
+
+            <sf:retrieve username="${TRAIN2.username}" password="${TRAIN2.password}" serverurl="${TRAIN2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveTRAIN">
+
+            <sf:retrieve username="${TRAIN.username}" password="${TRAIN.password}" serverurl="${TRAIN.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveGSDR22SP22">
+
+            <sf:retrieve username="${GSDR22SP22.username}" password="${GSDR22SP22.password}" serverurl="${GSDR22SP22.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveGSDR25">
+
+            <sf:retrieve username="${GSDR25.username}" password="${GSDR25.password}" serverurl="${GSDR25.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+<target name="retrieveLTGDEV">
+
+            <sf:retrieve username="${TRAIN.username}" password="${TRAIN.password}" serverurl="${TRAIN.serverurl}" 
+retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveLTGDEV2">
+
+            <sf:retrieve username="${CPQIT2.username}" password="${CPQIT2.password}" serverurl="${CPQIT2.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveGSDLTGDEV1">
+
+            <sf:retrieve username="${GSDDEV16.username}" password="${GSDDEV16.password}" serverurl="${GSDDEV16.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+<target name="retrieveMergedev29">
+
+            <sf:retrieve username="${Mergedev29.username}" password="${Mergedev29.password}" serverurl="${Mergedev29.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+
+    </target>
+
+
+ 
+<target name="deployMERGESEP21">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${MERGESEP21.username}" password="${MERGESEP21.password}" serverurl="${MERGESEP21.serverurl}" deployRoot="${svn.dirFLS}" >
+  
+  
+    
+      </sf:deploy>
+
+</target>  
+<target name="deployCodeCPQIT2">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${CPQIT2.username}" password="${CPQIT2.password}" serverurl="${CPQIT2.serverurl}" deployRoot="${svn.dirFLS}" >
+  
+  
+    
+      </sf:deploy>
+
+</target>  
+<target name="deployCONFIGQ122">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${CONFIGQ122.username}" password="${CONFIGQ122.password}" serverurl="${CONFIGQ122.serverurl}" deployRoot="${svn.dirFLS}">
+    
+  
+      </sf:deploy>
+
+</target>
+
+<target name="deployCodeTEST">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${TEST.username}" password="${TEST.password}" serverurl="${TEST.serverurl}" deployRoot="${svn.dirFLS}">
+    
+  
+      </sf:deploy>
+
+</target>
+
+  
+
+<target name="deployMergedev29">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${Mergedev29.username}" password="${Mergedev29.password}" serverurl="${Mergedev29.serverurl}" 
+  deployRoot="${svn.dirFLS}"  >
+  
+
+
+
+ 
+ 
+</sf:deploy>
+
+</target> 
+
+
+<target name="deployCodeCPQIT">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${CPQIT.username}" password="${CPQIT.password}" serverurl="${CPQIT.serverurl}" deployRoot="${svn.dirFLS}" >
+
+      </sf:deploy>
+
+</target>
+
+ 
+  <target name="deployFSLDEV">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${FSLDEV.username}" password="${FSLDEV.password}" serverurl="${FSLDEV.serverurl}" deployRoot="${svn.dirFLS}" >
+  
+
+      </sf:deploy>
+    
+</target>
+
+<target name="deployMOCKMTP2">
+
+<sf:deploy username="${Summer21.username}" password="${Summer21.password}" serverurl="${Summer21.serverurl}" 
+deployRoot ="${svn.dirFLS}" 
+      testlevel="RunSpecifiedTests" checkonly="true"> 
+
+
+
+     
+  <runtest>GLE_AssociateGSDProjectTest</runtest>
+
+    
+
+ 
+
+</sf:deploy>
+ </target>
+<target name="deployMergeq421">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      
+  <sf:deploy username="${Mergeq421.username}" password="${Mergeq421.password}" serverurl="${Mergeq421.serverurl}"
+  deployRoot="${svn.dirFLS}" testlevel="RunSpecifiedTests" checkonly="True"  >
+	
+		
+		
+		<runtest>AccountTeamTestClass</runtest>
+		<runtest>syncQLIwithOppyLineItemAutosyncTest</runtest>
+		
+ </sf:deploy>
+ </target>
+ 
+
+<target name="deployCodePROD">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      
+  <sf:deploy username="${PRODUCTION.username}" password="${PRODUCTION.password}"  
+  serverurl="${PRODUCTION.serverurl}" deployRoot="${svn.dirFLS}" testlevel="RunSpecifiedTests" checkonly="True"  >
+	
+		
+		<runtest>GSDPartnerJunctionHelper_Test</runtest>
+		
+
+		
+ </sf:deploy>
+
+</target>
+
+<target name="deployCodeTRAIN">
+
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${TRAIN.username}" password="${TRAIN.password}" serverurl="${TRAIN.serverurl}"   
+  deployRoot="${svn.dirFLS}" >
+      
+
+
+
+ </sf:deploy>
+
+</target>
+  <target name="deployMOCKMTP">
+      
+  <!-- Upload the contents of the "codepkg" directory, running the DXCTEST1s for just 1 class -->
+  
+      <sf:deploy username="${MOCKMTP.username}" password="${MOCKMTP.password}" serverurl="${MOCKMTP.serverurl}" 
+  deployRoot="${svn.dirFLS}" testlevel="RunSpecifiedTests" checkonly="true" > 
+
+        <runtest>ArchiveRecordCreationTest</runtest>
+        <runtest>ArchiveTaskDataCreationTest</runtest>
+      
+        <runtest>ArchiveUtilityTest</runtest>
+        <runtest>PurgeBatchCodeTest</runtest>   
+
+
+      </sf:deploy >
+
+    
+</target>
+
+</project>
