@@ -50,9 +50,9 @@
             <sf:retrieve username="${April18MTP.username}" password="${April18MTP.password}" serverurl="${April18MTP.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
 
     </target>
-<target name="retrieveMergeq421">
+<target name="retrieveMERGESEP21">
 
-            <sf:retrieve username="${Mergeq421.username}" password="${Mergeq421.password}" serverurl="${Mergeq421.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
+            <sf:retrieve username="${MERGESEP21.username}" password="${MERGESEP21.password}" serverurl="${MERGESEP21.serverurl}" retrieveTarget="${svn.dirFLS}" unpackaged="${svn.dirFLS}/package.xml"/>
 
     </target>
 <target name="retrieveTest2">
